@@ -1,25 +1,24 @@
-#include<stdio.h>
-int main()
-{
-    int n,i,sum=0,r;
-    scanf("%d",&n);
-    do
-    {
-        sum=0;
-        do
-        {
-            r=n%10;
-            sum=sum+r;
-            n=n/10;
+#include <stdio.h>
+
+int addDigits(int num) {
+    while (num >= 10) {
+        int sum = 0;
+        while (num != 0) {
+            sum += num % 10;
+            num /= 10;
         }
-        while(n!=0);
-        {
-            n=sum;
-        }
+        num = sum;
     }
-    while(sum/10!=0);
-    {
-        printf("%d",sum);
-    }
+    return num;
+}
+
+int main() {
+    int num;
+    scanf("%d", &num);
+
+    int result = addDigits(num);
+    printf("%d
+", result);
+
     return 0;
 }
