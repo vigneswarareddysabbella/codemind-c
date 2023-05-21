@@ -1,44 +1,35 @@
-#include<stdio.h>
-#include<math.h>
-int main()
-{
-	int n,q,m,l;
-	scanf("%d",&n);
-	m=log10(n)+1;
-	q=n;
-	int arr[m],i,j,cnt=0;
-	i=0;
-	while(q!=0)
-	{
-		//i=0;
-		int r;
-		r=q%10;
-		arr[i]=r;
-		q=q/10;
-		i++;
-		//printf("%d",arr[i]);
-	}
-		
-	for(i=0;i<m;i++)
-	{
-	for(j=0;j<m;j++)
-		{
-			if(i!=j)
-			{
-				if(arr[i]==arr[j])
-				{
-					cnt++;
-				}
-			}
-		}
-	}
-	if(cnt==0)
-	{
-		printf("Unique Number");
-	}
-	else
-	{
-		printf("Not Unique Number");
-	}
-	
+#include <stdio.h>
+
+int isUniqueNumber(int num) {
+    int digitCount[10] = {0};
+
+    // Count the frequency of each digit in the number
+    while (num > 0) {
+        int digit = num % 10;
+        digitCount[digit]++;
+        num /= 10;
+    }
+
+    // Check if any digit has a count greater than 1
+    for (int i = 0; i < 10; i++) {
+        if (digitCount[i] > 1) {
+            return 0; // Not a unique number
+        }
+    }
+
+    return 1; // Unique number
+}
+
+int main() {
+    int num;
+    scanf("%d", &num);
+    if (isUniqueNumber(num)) {
+        printf("Unique Number
+");
+    } else {
+        printf("Not Unique Number
+");
+    }
+
+    return 0;
 }
