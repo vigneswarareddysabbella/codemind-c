@@ -1,65 +1,46 @@
-#include<stdio.h>
-#include<math.h>
-int is_prime(int);
-int megaprime(int);
-int main()
-{
-	int n;
-	scanf("%d",&n);
-	if(is_prime(n))
-	{
-		if(megaprime(n))
-		{
-			printf("Mega Prime");
-		}
-		else
-		{
-			printf("Not Mega Prime");
-		}
-		
-	}
-	else
-	{
-		printf("Not Mega Prime");
-	}
-	
-}
-int is_prime(int m)
-{
-		int	fc=0;
-	for(int i=1;i<=m;i++)
-	{
+#include <stdio.h>
+#include <stdbool.h>
 
-		if(m%i==0)
-		{
-			fc=fc+1;			
-		}
-	}
-	return fc==2;
-}
-int megaprime(int m)
-{
-	int r,q,c=0,x;
-	x=(int) log10(m)+1;
+bool isPrime(int num) {
+    if (num <= 1) {
+        return false;
+    }
 
-	q=m;
-	while(q!=0)
-	{
-	r=q%10;
-	int	fc=0;
-	for(int i=1;i<=r;i++)
-	{
-		if(r%i==0)
-				{
-			fc=fc+1;			
-		}
-	}
-	if(fc==2)
-	{
-		c=c+1;
-	}
-	q=q/10;
-	}
-	
-	return x==c;
+    // Check for divisibility up to the square root of the number
+    for (int i = 2; i * i <= num; i++) {
+        if (num % i == 0) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+bool isMegaPrime(int num) {
+    char str_num[20]; // Assuming the number has at most 20 digits
+    sprintf(str_num, "%d", num);
+
+    for (int i = 0; str_num[i] != NULL; i++) {
+        int digit = str_num[i] - '0';
+        if (!isPrime(digit)) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+int main() {
+    int N;
+    scanf("%d", &N);
+
+    if (isPrime(N) && isMegaPrime(N)) {
+        printf("Mega Prime
+");
+    } else {
+        printf("Not Mega Prime
+");
+    }
+
+    return 0;
 }
