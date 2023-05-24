@@ -1,14 +1,16 @@
 #include<stdio.h>
 int main()
 {
-    int a,i,d=0;
-    scanf("%d",&a);
-    for(i=1;i<=a;i++)
+    int n,i,c=0;
+    scanf("%d",&n);
+    for(i=1;i<=n;i++)
     {
-        if(a%i==0)
-        d++;
+        if(n%i==0)
+        {
+            c++;
+        }
     }
-    if(d==2)
+    if(c==2)
     {
         printf("prime");
     }
